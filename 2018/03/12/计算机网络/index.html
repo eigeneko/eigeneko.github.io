@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Computer Networking," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.2 The Network Edgehost = end system1.2.1 Access NetworksHome Access: DSL (digital subscriber line) cable FTTH Dial-Up Satellitehybrid fiber coax Chapter4: The">
+<meta name="keywords" content="Computer Networking">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="http://www.eigeneko.moe/2018/03/12/计算机网络/index.html">
+<meta property="og:site_name" content="二律背反">
+<meta property="og:description" content="1.2 The Network Edgehost = end system1.2.1 Access NetworksHome Access: DSL (digital subscriber line) cable FTTH Dial-Up Satellitehybrid fiber coax Chapter4: The Network Layer:Data Planenetwork layer c">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-12T01:44:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络">
+<meta name="twitter:description" content="1.2 The Network Edgehost = end system1.2.1 Access NetworksHome Access: DSL (digital subscriber line) cable FTTH Dial-Up Satellitehybrid fiber coax Chapter4: The Network Layer:Data Planenetwork layer c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.eigeneko.moe/2018/03/12/计算机网络/"/>
+
+
+
+
+
+  <title>计算机网络 | 二律背反</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">二律背反</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">优秀的作品应包含数理 哲学 艺术要素</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eigeneko.moe/2018/03/12/计算机网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eigeneko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="二律背反">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T09:35:03+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Studying-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Studying Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/12/计算机网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/12/计算机网络/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.2 The Network Edge<br>host = end system<br>1.2.1 Access Networks<br>Home Access: DSL (digital subscriber line) cable FTTH Dial-Up Satellite<br>hybrid fiber coax</p>
+<h1 id="Chapter4-The-Network-Layer-Data-Plane"><a href="#Chapter4-The-Network-Layer-Data-Plane" class="headerlink" title="Chapter4: The Network Layer:Data Plane"></a>Chapter4: The Network Layer:Data Plane</h1><p>network layer can be decomposed into two interactiing parts,the <strong>data plane</strong> and the <strong>control plane</strong><br>what will be coverd?</p>
+<ul>
+<li><em>per_router</em> functions</li>
+<li>traditional IP forwarding</li>
+<li>generalized forwarding</li>
+<li>IPv4 IPv6 addressing</li>
+</ul>
+<h2 id="4-1-Overview-of-Network-Layer"><a href="#4-1-Overview-of-Network-Layer" class="headerlink" title="4.1 Overview of Network Layer"></a>4.1 Overview of Network Layer</h2><h3 id="4-1-1-Forwarding-and-Routing-The-Data-and-Control-Planes"><a href="#4-1-1-Forwarding-and-Routing-The-Data-and-Control-Planes" class="headerlink" title="4.1.1 Forwarding and Routing: The Data and Control Planes"></a>4.1.1 Forwarding and Routing: The Data and Control Planes</h3><ul>
+<li>two important network-layer functions:<ul>
+<li><em>Forwarding</em> in data plane of the network layer</li>
+<li><em>Routing</em> in control plane of the network layer</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-2-What’s-Inside-a-Router"><a href="#4-2-What’s-Inside-a-Router" class="headerlink" title="4.2 What’s Inside a Router?"></a>4.2 What’s Inside a Router?</h2><h3 id="4-2-1-Input-Port-Processiing-and-Destination-Based-Forwarding"><a href="#4-2-1-Input-Port-Processiing-and-Destination-Based-Forwarding" class="headerlink" title="4.2.1 Input Port Processiing and Destination-Based Forwarding"></a>4.2.1 Input Port Processiing and Destination-Based Forwarding</h3><ul>
+<li><strong>longest prefix matching</strong><h3 id="4-2-2-Switching"><a href="#4-2-2-Switching" class="headerlink" title="4.2.2 Switching"></a>4.2.2 Switching</h3></li>
+<li>Switching via memory<ul>
+<li>only one memeory read/write can be done at a time.</li>
+</ul>
+</li>
+<li>Switching via a bus<ul>
+<li>only one packet can cross the bus at a time.</li>
+</ul>
+</li>
+<li>Switching via an interconnection network<ul>
+<li>crossbar switch <strong>non-blocking</strong></li>
+<li>a packet being forwarding will not be blocked as long as no other packet is currently being forwarded to that output port.<h3 id="4-2-3-Output-Port-Processing"><a href="#4-2-3-Output-Port-Processing" class="headerlink" title="4.2.3 Output Port Processing"></a>4.2.3 Output Port Processing</h3><h3 id="4-2-4-Where-Does-Queueing-Occur"><a href="#4-2-4-Where-Does-Queueing-Occur" class="headerlink" title="4.2.4 Where Does Queueing Occur?"></a>4.2.4 Where Does Queueing Occur?</h3></li>
+</ul>
+</li>
+<li>queueing-at both input ports and output ports</li>
+<li>factor: <strong>line speed</strong>, <strong>traffic load</strong>, <strong>relative speed</strong></li>
+<li><strong>Input Queueing</strong><ul>
+<li>head-of-line(HOL) blocking<br>a queued packet in an input queue must wait for transfer through the fabric even though its output port is free</li>
+</ul>
+</li>
+<li><strong>Output Queueing</strong><ul>
+<li>drop-tail drop the arriving packet</li>
+<li>active queue management(AQM)<br>Random Early Detection(RED)<h3 id="4-2-5-Packet-Scheduling"><a href="#4-2-5-Packet-Scheduling" class="headerlink" title="4.2.5 Packet Scheduling"></a>4.2.5 Packet Scheduling</h3></li>
+</ul>
+</li>
+<li>FIFO</li>
+<li>Priority Queueing<ul>
+<li>non-preemptive priority queuing<br>the transmission of a packet is not interrupted once it has begun</li>
+</ul>
+</li>
+<li>Round Robin and Weighted Fair Queueing(WFQ)<br>alternates service among different classes in priority<br>queueing<ul>
+<li><strong>work_conserving queueing</strong><br>move on to the next class in the service sequence when it finds an empty calss queue.(轮到服务你但是你为空我就跳过)</li>
+</ul>
+</li>
+<li>WFQ each class may receive a different amout of service in any interval of time.</li>
+</ul>
+<h2 id="4-3-The-Internet-Protocol-IP-IPv4-IPv6-Addressing"><a href="#4-3-The-Internet-Protocol-IP-IPv4-IPv6-Addressing" class="headerlink" title="4.3 The Internet Protocol(IP): IPv4,IPv6,Addressing"></a>4.3 The Internet Protocol(IP): IPv4,IPv6,Addressing</h2><h3 id="4-3-1-IPv4-Datagram-Format"><a href="#4-3-1-IPv4-Datagram-Format" class="headerlink" title="4.3.1 IPv4 Datagram Format"></a>4.3.1 IPv4 Datagram Format</h3><p>20 bytes of header(no optons)</p>
+<ul>
+<li><em>Version number</em> 4bits</li>
+<li><em>Header length</em> </li>
+<li><em>Type of service</em></li>
+<li><em>Datagram length</em> 16bits long</li>
+<li><em>Identifier, flags, fragmentation offset</em></li>
+<li><em>Time-to-live</em></li>
+<li><em>Protocol</em><br>  指定IP datagram的data portion应该传给transport-layer的哪种协议</li>
+<li><em>Checksum</em><ul>
+<li>路由器检查到错误就丢弃datagram，因为每经过一个路由器TTL和option（可能）都会改变，所以要重新计算checksum</li>
+<li>为什么TCP/IP 在transport layer和networklayer 都要error checking？</li>
+<li>IP能携带不会传给TCP/UDP的数据</li>
+</ul>
+</li>
+<li><em>Source and destination IP address</em></li>
+<li><em>Option</em> IPv6没有</li>
+<li><em>Data(Playload)</em><br>  包含transport-layer segment(TCP/UDP)还可以包含其他数据(ICMP)</li>
+</ul>
+<h3 id="4-3-2-IPv4-Datagram-Fragmentaion"><a href="#4-3-2-IPv4-Datagram-Fragmentaion" class="headerlink" title="4.3.2 IPv4 Datagram Fragmentaion"></a>4.3.2 IPv4 Datagram Fragmentaion</h3><ul>
+<li>maximum transmission unit(MTU)</li>
+<li>为什么要fragmentation?<br>因为不同的link-layer protocol有不同的MTU</li>
+<li>fragments need to be reassembled befroe reach transport layer<h3 id="4-3-3-IPv4-Addressing"><a href="#4-3-3-IPv4-Addressing" class="headerlink" title="4.3.3 IPv4 Addressing"></a>4.3.3 IPv4 Addressing</h3></li>
+<li><strong>interface</strong><ul>
+<li>什么是interface?</li>
+<li>an IP address is technically associated with an interface, rather than with the host or router containing that interface*</li>
+</ul>
+</li>
+<li><strong>subnet</strong><ul>
+<li>如何划分子网</li>
+<li>255.255.255.255 广播地址</li>
+</ul>
+</li>
+<li><strong>subnet mask</strong><ul>
+<li>注意，路由器之间也算可以构成子网</li>
+</ul>
+</li>
+<li><strong>DHCP</strong><br>  dynamic host configuration protocol 自动分配IP地址<ul>
+<li>first-hop router = default gateway</li>
+<li>DHCP protocol的four-step process<ul>
+<li>DHCP server discovery <strong>DHCP discover message</strong></li>
+<li>DHCP server offer <strong>DHCP offer message</strong> 同个子网可能有多个DHCP server</li>
+<li>DHCP request <strong>DHCP request message</strong></li>
+<li>DHCP message <strong>DHCP ACK</strong><h3 id="4-3-4-Network-Address-Translation-NAT"><a href="#4-3-4-Network-Address-Translation-NAT" class="headerlink" title="4.3.4 Network Address Translation(NAT)"></a>4.3.4 Network Address Translation(NAT)</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>private network<ul>
+<li>10.0.0.0/8 是三种保留的IP地址之一</li>
+<li><strong>NAT translation table</strong> 让router知道该把外网的datagram传给哪个host</li>
+</ul>
+</li>
+</ul>
+<h1 id="Chapter5-Network-Layer-Control-Plane"><a href="#Chapter5-Network-Layer-Control-Plane" class="headerlink" title="Chapter5 Network Layer-Control Plane"></a>Chapter5 Network Layer-Control Plane</h1><p>link state中的oscillation是什么？<br>distance vecotr中最坏的情况是？</p>
+<hr>
+<p>##goals</p>
+<ul>
+<li>understanding principles behind network control plane</li>
+<li>SDN controllers</li>
+<li>Internet Control Message Protocol</li>
+<li>network management</li>
+<li>OSPF BGP OpenFlow ODL ONOS</li>
+<li>ICMP SNMP</li>
+</ul>
+<hr>
+<h2 id="5-1-introductino"><a href="#5-1-introductino" class="headerlink" title="5.1 introductino"></a>5.1 introductino</h2><ul>
+<li><strong>two network-layer function</strong><ul>
+<li>forwarding-data plane</li>
+<li>routing-control plane</li>
+</ul>
+</li>
+<li><strong>two approches of control plane</strong><ul>
+<li>per-router control</li>
+<li>logically centralized control<br>  software defined networking</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-2-routing-protocols"><a href="#5-2-routing-protocols" class="headerlink" title="5.2 routing protocols"></a>5.2 routing protocols</h2><ul>
+<li>link state<br>  dijkstra <strong>oscillations???</strong></li>
+<li>distance vector<br>  bellman-ford $D_x(y)=min{c(x,v)+d_v(y)}$<br>  when link cost change what will happen?<br>  <strong>convergence timn varies, count-to-infinity</strong></li>
+</ul>
+<hr>
+<h2 id="5-3-intra-AS-routing-in-the-internet-OSPF"><a href="#5-3-intra-AS-routing-in-the-internet-OSPF" class="headerlink" title="5.3 intra-AS routing in the internet:OSPF"></a>5.3 intra-AS routing in the internet:OSPF</h2><ul>
+<li><strong>autonomous system(AS)</strong></li>
+<li><strong>intra-AS routing</strong><br>  routing in same AS<br>  all routers in AS must run <strong>same</strong> intra-domain protocol<ul>
+<li>intra-AS routing algorithm</li>
+</ul>
+</li>
+<li><strong>inter-AS routing</strong><br>  routing among AS<ul>
+<li>inter-AS routing algorithm<br>router in AS1 destined outside of AS1<br>propagate rechability info to all routers in AS1</li>
+</ul>
+</li>
+<li>interior gateway protocols(IGP)<br>##intra-AS routing protocols:</li>
+<li>RIP routing information protocol</li>
+<li>OSPF open shortest path<br>  use link-state algorithm<br>  carried in OSPF messages directly over <strong>IP</strong><br>  like IS-IS routing protocol<ul>
+<li>hierarchical OSPF<br>  two-level hierarchy: local area, backbone<br>  link-state advertisement only in area<ul>
+<li>area border routers</li>
+<li>backbone routers</li>
+<li>boundary routers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IGRP interior gateway routing protocol</li>
+</ul>
+<hr>
+<h2 id="5-4-inter-AS-routing"><a href="#5-4-inter-AS-routing" class="headerlink" title="5.4 inter-AS routing"></a>5.4 inter-AS routing</h2><p><strong>BGP(border gateway protocol)</strong><br>eBGP<br>iBGP</p>
+<ul>
+<li>BGP session: over TCP connection<br>  advertise: prefix(destination)+attributesd = route<br>  two attributes<br>  <strong>AS-PATH</strong><br>  <strong>NEXT-HOP</strong><br>  policy-based routing<br>  how BGP path advertisement works?<br>  BGP route slection<ul>
+<li>local preference-<strong>policy</strong></li>
+<li>shortest AS-PATH</li>
+<li>closest NEXT-HOP-<strong>hot potato routing</strong></li>
+<li>additional criteria<h2 id="different-between-inter-intra-routing"><a href="#different-between-inter-intra-routing" class="headerlink" title="different between inter/intra routing"></a>different between inter/intra routing</h2></li>
+</ul>
+</li>
+<li><strong>policy</strong><br>  inter-AS: admin wants to control how traffic is routed<br>  intra-AS: no need</li>
+<li><strong>scale</strong><br>  hierarchical routing saves table size, reduced update traffic</li>
+<li><strong>performance</strong><br>  intra-AS: can focus on performance<br>  inter-AS: policy may dominate over performance</li>
+</ul>
+<hr>
+<h2 id="5-5-software-defined-networking-SDN"><a href="#5-5-software-defined-networking-SDN" class="headerlink" title="5.5 software defined networking(SDN)"></a>5.5 software defined networking(SDN)</h2><ul>
+<li>network control applications</li>
+<li>SDN controller</li>
+<li>network switches</li>
+<li><strong>openflow protocol</strong><br>  controller to switch message<br>  switch to controller message</li>
+</ul>
+<hr>
+<h2 id="5-6-ICMP-internet-control-message-protocol"><a href="#5-6-ICMP-internet-control-message-protocol" class="headerlink" title="5.6 ICMP(internet control message protocol)"></a>5.6 ICMP(internet control message protocol)</h2><ul>
+<li><strong>ICMP</strong><br>  used by hosts &amp; routers to communicate<br>  ICMP msgs carried in IP datagrams<br>  <strong>format</strong> type+code+first 8 bytes of IP datagram<br>  source send UDP to routers and routers back ICMP(name of routers and ip address)</li>
+</ul>
+<hr>
+<h2 id="5-7-network-management"><a href="#5-7-network-management" class="headerlink" title="5.7 network management"></a>5.7 network management</h2><p><strong>managed devices</strong> contain <strong>managed objects</strong> whose data is gathered into a <strong>management information base(MIB)</strong></p>
+<ul>
+<li><strong>SNMP protocol</strong><ul>
+<li>request/response mode</li>
+<li>trap mode</li>
+</ul>
+</li>
+</ul>
+<h1 id="Chapter6"><a href="#Chapter6" class="headerlink" title="Chapter6"></a>Chapter6</h1><p>##goals</p>
+<ul>
+<li>understand principles behind link layer services<ul>
+<li>error detection, correction</li>
+<li>sharing a broadcast channel: multiple access</li>
+<li>link layer addressing</li>
+<li>local area networks: Ethernet, VLAN</li>
+</ul>
+</li>
+<li>instantiation, implementation of various link layer technologies</li>
+</ul>
+<hr>
+<p>##6.1 introduction, services<br>link layer transfer datagram from one node to <strong>physically adjacent</strong> noe over link<br>datagram transferred by different link protocols over different links</p>
+<h3 id="link-protocols"><a href="#link-protocols" class="headerlink" title="link protocols"></a>link protocols</h3><p>ethernet, ppp, 802.ii</p>
+<h3 id="link-layer-services"><a href="#link-layer-services" class="headerlink" title="link layer services"></a>link layer services</h3><ul>
+<li>framing, link access<br>  encapsulate datagram into frame<br>  mac addresses used in frame header to identify source, destination</li>
+<li>reliable delivery between adjacent nodes<br>  seldom used on low bit-error link(fiber, twisted pair)<br>  <strong>why both link-level and end-end reliability</strong></li>
+<li>flow control</li>
+<li>error detection<br>  error caused by signal attenuation, noise</li>
+<li>error correction<br>  receiver identifies and corrects bit errors(s)</li>
+<li>full-duplex / half-duplex<h3 id="link-layer-implemented"><a href="#link-layer-implemented" class="headerlink" title="link layer implemented"></a>link layer implemented</h3></li>
+<li>in each and every host</li>
+<li>implemented in adaptor(network interface card NIC)<h3 id="adaptor-communicating"><a href="#adaptor-communicating" class="headerlink" title="adaptor communicating"></a>adaptor communicating</h3></li>
+</ul>
+<p>sending side</p>
+<ul>
+<li>encapsulates datagram in frame</li>
+<li>adds error checking bits, rdt, flow control<br>  recieving side</li>
+<li>looks for errors, rdt, control</li>
+<li>extracts datagram, passes to upper layer</li>
+</ul>
+<hr>
+<h2 id="6-2-error-detection-correction"><a href="#6-2-error-detection-correction" class="headerlink" title="6.2 error detection/correction"></a>6.2 error detection/correction</h2><h3 id="error-detection"><a href="#error-detection" class="headerlink" title="error detection"></a>error detection</h3><p>EDC</p>
+<h3 id="parity-checking"><a href="#parity-checking" class="headerlink" title="parity checking"></a>parity checking</h3><p>single bit parity<br>two-dimensional bit parity</p>
+<h3 id="internet-checksum"><a href="#internet-checksum" class="headerlink" title="internet checksum"></a>internet checksum</h3><p>used at transport layer only</p>
+<h3 id="cyclic-redundancy-check"><a href="#cyclic-redundancy-check" class="headerlink" title="cyclic redundancy check"></a>cyclic redundancy check</h3><p>D:data G: r+1 bit pattern<br>D: data to be sent R:CRC bits<br>D*2^r XOR R<br>example</p>
+<hr>
+<h2 id="6-3-multiple-access-protocols"><a href="#6-3-multiple-access-protocols" class="headerlink" title="6.3 multiple access protocols"></a>6.3 multiple access protocols</h2><p>two types of links</p>
+<ul>
+<li>point-to-point<pre><code>ppp for dial-up access
+</code></pre></li>
+<li>broadcast(shared wire or medium)<pre><code>upstream HFC
+802.II wireless LAN
+</code></pre><strong>collision</strong> if node reveives two or more signals at the same time<br><strong>multiple access protocol</strong><br>  desired properties<h3 id="MAC-protocols-taxonomy"><a href="#MAC-protocols-taxonomy" class="headerlink" title="MAC protocols: taxonomy"></a>MAC protocols: taxonomy</h3><strong>channel partitioning</strong><br>  divide channel into pieces<br><strong>random access</strong><br>  channel not divided, allow collisions<br><strong>taking turns</strong><br>  nodes with more to sent can take longer turns<h3 id="channel-partitioning-MAC-protocols"><a href="#channel-partitioning-MAC-protocols" class="headerlink" title="channel partitioning MAC protocols"></a>channel partitioning MAC protocols</h3><strong>TDMA</strong> time division multiple access<br>access to channel in rounds, each station get fixed slot<br><strong>FDMA</strong> frequency division multiple access<h3 id="random-access-MAC-protocol"><a href="#random-access-MAC-protocol" class="headerlink" title="random access MAC protocol"></a>random access MAC protocol</h3><strong>slotted ALOHA</strong><br>efficiency<br>max efficiency = 1/e = 3.7<br><strong>ALOHA</strong><br>max efficiency = 1/2e = 2.8<br><strong>CSMA</strong><br><strong>CSMA/CD</strong><br>binary(exponential)backoff<br>CSMA + CD(collision detection)<br>easy in wire LANs: measure signal strength, compare transmitted, received signals<br>difficult in wireless LANs: received signal strenth overwhelmed by local transmission strength<br>, CSMA/CA**<br>carrier sense multiple access<br>CSMA listen before transmit<br>if channel sesed idle,transmit entire frame<br>if channel sensed busy, defer transmission<br>transmit at full channel data rate R<br>two or more transmitting nodes-&gt;collision</li>
+</ul>
+<ul>
+<li><strong>how to detect collisions</strong></li>
+<li><strong>how to recover from collisions</strong><h3 id="taking-turns-protocols"><a href="#taking-turns-protocols" class="headerlink" title="taking turns protocols"></a>taking turns protocols</h3>FDDI, bluetooth, token ring<br><strong>polling</strong><br><strong>token passing</strong></li>
+</ul>
+<hr>
+<h2 id="6-4-LANs"><a href="#6-4-LANs" class="headerlink" title="6.4 LANs"></a>6.4 LANs</h2><h3 id="MAC-addresses-and-ARP"><a href="#MAC-addresses-and-ARP" class="headerlink" title="MAC addresses and ARP"></a>MAC addresses and ARP</h3><p>ip address MAC(LAN or physical or Ethernet) address<br>MAC flat address -&gt; protability<br>    can move LAN card from one LAN to another<br>IP hierarchical address - &gt; unprotable<br>    address depends on IP subnet to which node is attached<br><strong>ARP:address resolution protocol</strong><br>ARP table <ip address;="" mac="" ttl=""></ip></p>
+<h3 id="Ethernet"><a href="#Ethernet" class="headerlink" title="Ethernet"></a>Ethernet</h3><p>wired  LAN  technology</p>
+<h4 id="physical-topology"><a href="#physical-topology" class="headerlink" title="physical topology"></a>physical topology</h4><ul>
+<li><strong>bus</strong> coaxial cable</li>
+<li><strong>star</strong> switch<h4 id="frame-structure"><a href="#frame-structure" class="headerlink" title="frame structure"></a>frame structure</h4>sending adapter encapsulates IP datagram in Ethernet frame</li>
+<li>preamble</li>
+<li>addresses</li>
+<li>type<h4 id="Ethernet-is-unreliable-connectionless"><a href="#Ethernet-is-unreliable-connectionless" class="headerlink" title="Ethernet is unreliable, connectionless"></a>Ethernet is unreliable, connectionless</h4></li>
+<li>connectionless: no handshaking between sending  and receiving NICs</li>
+<li>unreliable: receiving NIC doesn’t send acks or nacks</li>
+<li>ethernet’s mac protocol</li>
+<li>unslotted CSMA/CD with binary backoff<h4 id="802-3-Ethernet-standards-link-amp-physical-layers"><a href="#802-3-Ethernet-standards-link-amp-physical-layers" class="headerlink" title="802.3 Ethernet standards: link &amp; physical layers"></a>802.3 Ethernet standards: link &amp; physical layers</h4>common MAC protocol and frame format<br>different speeds: 2 Mbps, 10Mbps, 100Mbps<br>different physical layer media: fiber, cable<h3 id="Ethernet-switch"><a href="#Ethernet-switch" class="headerlink" title="Ethernet switch"></a>Ethernet switch</h3><h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4></li>
+<li>link-layer device: takes an active role</li>
+<li><strong>transparent</strong><pre><code>hosts are unaware of presence of switches
+</code></pre></li>
+<li><strong>plug-and-play self-learning</strong><pre><code>switches do not need to be configured
+</code></pre></li>
+<li><strong>switching can transmit simultaneously</strong><h4 id="switch-forwarding-table"><a href="#switch-forwarding-table" class="headerlink" title="switch forwarding table"></a>switch forwarding table</h4>each switch has a switch table<br>switch <strong>learns</strong> which hosts can be reached through which interfaces<h4 id="properties-of-link-layer-switching"><a href="#properties-of-link-layer-switching" class="headerlink" title="properties of link-layer switching"></a>properties of link-layer switching</h4></li>
+<li>elimination of collisions</li>
+<li>heterogeneous links</li>
+<li>management<h4 id="different-between-switches-and-routers"><a href="#different-between-switches-and-routers" class="headerlink" title="different between switches and routers"></a>different between switches and routers</h4></li>
+<li>routers<br>  network-layer devices<br>  compute tables using routing algorithms, IP addresses</li>
+<li>switches(no network layer)<br>  link-layer devices<br>  learn forwarding table using flooding, learning, MAC addresses<h3 id="VLANs"><a href="#VLANs" class="headerlink" title="VLANs"></a>VLANs</h3>virtual local area network<br>define multiple virtual LANs over single physical LAN infrastructure<h4 id="port-based-VLAN"><a href="#port-based-VLAN" class="headerlink" title="port-based VLAN"></a>port-based VLAN</h4></li>
+<li>traffic isolation</li>
+<li>dynamic membership<pre><code>ports can be dynamically assigned among VLANs
+</code></pre></li>
+<li>forwarding between VLANS<pre><code>done via routing(just as with separate switches)
+</code></pre><h4 id="VLANs-spanning-multiple-switches"><a href="#VLANs-spanning-multiple-switches" class="headerlink" title="VLANs spanning multiple switches"></a>VLANs spanning multiple switches</h4><strong>trunk port</strong><br>carries frames between VLANS defined over multiple physical switches<br>  802.I q protocol adds/removed additional header fields for frames forwarded between trunk ports<h3 id="wireless-LANs"><a href="#wireless-LANs" class="headerlink" title="wireless LANs"></a>wireless LANs</h3><h4 id="802-II-LAN-architecture"><a href="#802-II-LAN-architecture" class="headerlink" title="802.II LAN architecture"></a>802.II LAN architecture</h4><strong>AP(base station=access point)</strong><br><strong>BSS(basic service set)</strong><h4 id="802-II-channels-association"><a href="#802-II-channels-association" class="headerlink" title="802.II channels, association"></a>802.II channels, association</h4></li>
+</ul>
+<hr>
+<h2 id="6-7-a-day-in-the-life-of-a-web-request"><a href="#6-7-a-day-in-the-life-of-a-web-request" class="headerlink" title="6.7 a day in the life of a web request"></a>6.7 a day in the life of a web request</h2><ul>
+<li><strong>DHCP</strong><br>dhcp request encapsulated<br>  -<strong>UDP</strong><br>  -<strong>IP</strong><br>  -<strong>802.3 Ethernet</strong><br>  -broadcast(dest:全F)<br>  -ethernet demuxed to ip demuxed to udp demuxed to dhcp<br>client now has ip address, name &amp; address of DNS server, ip address of its first-hop router</li>
+<li><strong>DNS</strong><br>DNS encapsulated<br>  -<strong>UDP</strong><br>  -<strong>IP</strong><br>  -<strong>ARP</strong><br>client now knows MAC address of first hop router</li>
+<li><strong>TCP</strong></li>
+<li><strong>HTTP</strong></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Computer-Networking/" rel="tag"># Computer Networking</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/MOEA-D/" rel="next" title="MOEA/D">
+                <i class="fa fa-chevron-left"></i> MOEA/D
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/12/OpenGL/" rel="prev" title="OpenGL">
+                OpenGL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="eigeneko" />
+            
+              <p class="site-author-name" itemprop="name">eigeneko</p>
+              <p class="site-description motion-element" itemprop="description">每日精进 一期一会</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Space_Observers" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/eigeneko" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter4-The-Network-Layer-Data-Plane"><span class="nav-number">1.</span> <span class="nav-text">Chapter4: The Network Layer:Data Plane</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Overview-of-Network-Layer"><span class="nav-number">1.1.</span> <span class="nav-text">4.1 Overview of Network Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-Forwarding-and-Routing-The-Data-and-Control-Planes"><span class="nav-number">1.1.1.</span> <span class="nav-text">4.1.1 Forwarding and Routing: The Data and Control Planes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-What’s-Inside-a-Router"><span class="nav-number">1.2.</span> <span class="nav-text">4.2 What’s Inside a Router?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-Input-Port-Processiing-and-Destination-Based-Forwarding"><span class="nav-number">1.2.1.</span> <span class="nav-text">4.2.1 Input Port Processiing and Destination-Based Forwarding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Switching"><span class="nav-number">1.2.2.</span> <span class="nav-text">4.2.2 Switching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-Output-Port-Processing"><span class="nav-number">1.2.3.</span> <span class="nav-text">4.2.3 Output Port Processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-Where-Does-Queueing-Occur"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.2.4 Where Does Queueing Occur?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-Packet-Scheduling"><span class="nav-number">1.2.5.</span> <span class="nav-text">4.2.5 Packet Scheduling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-The-Internet-Protocol-IP-IPv4-IPv6-Addressing"><span class="nav-number">1.3.</span> <span class="nav-text">4.3 The Internet Protocol(IP): IPv4,IPv6,Addressing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-IPv4-Datagram-Format"><span class="nav-number">1.3.1.</span> <span class="nav-text">4.3.1 IPv4 Datagram Format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-IPv4-Datagram-Fragmentaion"><span class="nav-number">1.3.2.</span> <span class="nav-text">4.3.2 IPv4 Datagram Fragmentaion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-IPv4-Addressing"><span class="nav-number">1.3.3.</span> <span class="nav-text">4.3.3 IPv4 Addressing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-4-Network-Address-Translation-NAT"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.3.4 Network Address Translation(NAT)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter5-Network-Layer-Control-Plane"><span class="nav-number">2.</span> <span class="nav-text">Chapter5 Network Layer-Control Plane</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-introductino"><span class="nav-number">2.1.</span> <span class="nav-text">5.1 introductino</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-routing-protocols"><span class="nav-number">2.2.</span> <span class="nav-text">5.2 routing protocols</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-intra-AS-routing-in-the-internet-OSPF"><span class="nav-number">2.3.</span> <span class="nav-text">5.3 intra-AS routing in the internet:OSPF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-inter-AS-routing"><span class="nav-number">2.4.</span> <span class="nav-text">5.4 inter-AS routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#different-between-inter-intra-routing"><span class="nav-number">2.5.</span> <span class="nav-text">different between inter/intra routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-software-defined-networking-SDN"><span class="nav-number">2.6.</span> <span class="nav-text">5.5 software defined networking(SDN)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-ICMP-internet-control-message-protocol"><span class="nav-number">2.7.</span> <span class="nav-text">5.6 ICMP(internet control message protocol)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-network-management"><span class="nav-number">2.8.</span> <span class="nav-text">5.7 network management</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter6"><span class="nav-number">3.</span> <span class="nav-text">Chapter6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#link-protocols"><span class="nav-number">3.0.1.</span> <span class="nav-text">link protocols</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#link-layer-services"><span class="nav-number">3.0.2.</span> <span class="nav-text">link layer services</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#link-layer-implemented"><span class="nav-number">3.0.3.</span> <span class="nav-text">link layer implemented</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adaptor-communicating"><span class="nav-number">3.0.4.</span> <span class="nav-text">adaptor communicating</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-error-detection-correction"><span class="nav-number">3.1.</span> <span class="nav-text">6.2 error detection/correction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#error-detection"><span class="nav-number">3.1.1.</span> <span class="nav-text">error detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parity-checking"><span class="nav-number">3.1.2.</span> <span class="nav-text">parity checking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#internet-checksum"><span class="nav-number">3.1.3.</span> <span class="nav-text">internet checksum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cyclic-redundancy-check"><span class="nav-number">3.1.4.</span> <span class="nav-text">cyclic redundancy check</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-multiple-access-protocols"><span class="nav-number">3.2.</span> <span class="nav-text">6.3 multiple access protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-protocols-taxonomy"><span class="nav-number">3.2.1.</span> <span class="nav-text">MAC protocols: taxonomy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#channel-partitioning-MAC-protocols"><span class="nav-number">3.2.2.</span> <span class="nav-text">channel partitioning MAC protocols</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#random-access-MAC-protocol"><span class="nav-number">3.2.3.</span> <span class="nav-text">random access MAC protocol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#taking-turns-protocols"><span class="nav-number">3.2.4.</span> <span class="nav-text">taking turns protocols</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-LANs"><span class="nav-number">3.3.</span> <span class="nav-text">6.4 LANs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC-addresses-and-ARP"><span class="nav-number">3.3.1.</span> <span class="nav-text">MAC addresses and ARP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ethernet"><span class="nav-number">3.3.2.</span> <span class="nav-text">Ethernet</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#physical-topology"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">physical topology</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#frame-structure"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">frame structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ethernet-is-unreliable-connectionless"><span class="nav-number">3.3.2.3.</span> <span class="nav-text">Ethernet is unreliable, connectionless</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#802-3-Ethernet-standards-link-amp-physical-layers"><span class="nav-number">3.3.2.4.</span> <span class="nav-text">802.3 Ethernet standards: link & physical layers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ethernet-switch"><span class="nav-number">3.3.3.</span> <span class="nav-text">Ethernet switch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#switch"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">switch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch-forwarding-table"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">switch forwarding table</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#properties-of-link-layer-switching"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">properties of link-layer switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#different-between-switches-and-routers"><span class="nav-number">3.3.3.4.</span> <span class="nav-text">different between switches and routers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLANs"><span class="nav-number">3.3.4.</span> <span class="nav-text">VLANs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#port-based-VLAN"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">port-based VLAN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VLANs-spanning-multiple-switches"><span class="nav-number">3.3.4.2.</span> <span class="nav-text">VLANs spanning multiple switches</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wireless-LANs"><span class="nav-number">3.3.5.</span> <span class="nav-text">wireless LANs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#802-II-LAN-architecture"><span class="nav-number">3.3.5.1.</span> <span class="nav-text">802.II LAN architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#802-II-channels-association"><span class="nav-number">3.3.5.2.</span> <span class="nav-text">802.II channels, association</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7-a-day-in-the-life-of-a-web-request"><span class="nav-number">3.4.</span> <span class="nav-text">6.7 a day in the life of a web request</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">理性存在观测者</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://eigeneko.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.eigeneko.moe/2018/03/12/计算机网络/';
+          this.page.identifier = '2018/03/12/计算机网络/';
+          this.page.title = '计算机网络';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://eigeneko.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
