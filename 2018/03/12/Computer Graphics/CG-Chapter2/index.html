@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Chapter2 Miscellaneous Math2.5 Curves and Surfaces2.5.1 2D Implicit Curvesimplicit equation $f(x,y)=0$ 2.5.2 The 2D Gradient$\nabla f(x,y)=(\frac{\partial f}{\p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CG_Chapter2">
+<meta property="og:url" content="http://www.eigeneko.moe/2018/03/12/Computer Graphics/CG-Chapter2/index.html">
+<meta property="og:site_name" content="二律背反">
+<meta property="og:description" content="Chapter2 Miscellaneous Math2.5 Curves and Surfaces2.5.1 2D Implicit Curvesimplicit equation $f(x,y)=0$ 2.5.2 The 2D Gradient$\nabla f(x,y)=(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y})">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-12T15:42:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CG_Chapter2">
+<meta name="twitter:description" content="Chapter2 Miscellaneous Math2.5 Curves and Surfaces2.5.1 2D Implicit Curvesimplicit equation $f(x,y)=0$ 2.5.2 The 2D Gradient$\nabla f(x,y)=(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y})">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.eigeneko.moe/2018/03/12/Computer Graphics/CG-Chapter2/"/>
+
+
+
+
+
+  <title>CG_Chapter2 | 二律背反</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">二律背反</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">优秀的作品应包含数理 哲学 艺术要素</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eigeneko.moe/2018/03/12/Computer Graphics/CG-Chapter2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eigeneko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="二律背反">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CG_Chapter2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T09:50:37+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Graphics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Chapter2-Miscellaneous-Math"><a href="#Chapter2-Miscellaneous-Math" class="headerlink" title="Chapter2 Miscellaneous Math"></a>Chapter2 Miscellaneous Math</h1><h2 id="2-5-Curves-and-Surfaces"><a href="#2-5-Curves-and-Surfaces" class="headerlink" title="2.5 Curves and Surfaces"></a>2.5 Curves and Surfaces</h2><h3 id="2-5-1-2D-Implicit-Curves"><a href="#2-5-1-2D-Implicit-Curves" class="headerlink" title="2.5.1 2D Implicit Curves"></a>2.5.1 2D Implicit Curves</h3><p><em>implicit equation</em> $f(x,y)=0$</p>
+<h3 id="2-5-2-The-2D-Gradient"><a href="#2-5-2-The-2D-Gradient" class="headerlink" title="2.5.2 The 2D Gradient"></a>2.5.2 The 2D Gradient</h3><p>$\nabla f(x,y)=(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y})$<br><em>normal vector</em>: vector perpendicular to the tangent vector of the curve at that point<br>gradient points indicate the direction of the f(x,y) &gt; 0 region</p>
+<ul>
+<li><strong>implicit 2D lines</strong></li>
+<li><strong>implicit Quadric Curves</strong><br>$Ax^2+Bxy+Cy^2+Dx+Ey+F$<h3 id="2-5-3-3D-Implicit-Surfaces"><a href="#2-5-3-3D-Implicit-Surfaces" class="headerlink" title="2.5.3 3D Implicit Surfaces"></a>2.5.3 3D Implicit Surfaces</h3>$f(x,y,z)=0$ <h3 id="2-5-4-Surface-Normal-to-an-Implicit-Surface"><a href="#2-5-4-Surface-Normal-to-an-Implicit-Surface" class="headerlink" title="2.5.4 Surface Normal to an Implicit Surface"></a>2.5.4 Surface Normal to an Implicit Surface</h3>A <strong>surface normal</strong> is a vector perpendicular to the surface.<br>Each point on the surface may havee a different normal vector<br>$\vec n = \nabla f(\vec p) = (\frac{\partial f(\vec p)}{\partial x},<br>\frac{\partial f(\vec p)}{\partial x},<br>\frac{\partial f(\vec p)}{\partial x})$</li>
+</ul>
+<h3 id="2-5-5-Implicit-Planes"><a href="#2-5-5-Implicit-Planes" class="headerlink" title="2.5.5 Implicit Planes"></a>2.5.5 Implicit Planes</h3><p>$(\vec p- \vec a) \cdot \vec n = 0 $<br>$\vec n = (\vec b - \vec a)\times(\vec c - \vec a)$</p>
+<ul>
+<li><strong>3D Quadric Surfaces</strong></li>
+<li><strong>3D Curves from Implicit Surfaces</strong><br>  A 3D curve can be constructed from the intersection of two simultaneous implicit equation<h3 id="2-5-6-Parametric-Curves"><a href="#2-5-6-Parametric-Curves" class="headerlink" title="2.5.6 Parametric Curves"></a>2.5.6 Parametric Curves</h3>$\begin{bmatrix} x\y \end{bmatrix} = \begin{bmatrix} g(t)\h(t) \end{bmatrix}$ or $\vec p = f(t)$</li>
+<li><strong>2D Parametric Lines</strong><br>  $\begin{bmatrix} x\y \end{bmatrix} = \begin{bmatrix} x_0+t(x_1-x_0)\y_0+t(y_1 - y_0) \end{bmatrix}$</li>
+<li><strong>2D Parametric Circles</strong><br>  $\begin{bmatrix} x\y \end{bmatrix} = \begin{bmatrix} x_c+r\cos\phi\y_c+r\sin\phi \end{bmatrix}$</li>
+</ul>
+<h3 id="2-5-7-3D-Parametric-Curves"><a href="#2-5-7-3D-Parametric-Curves" class="headerlink" title="2.5.7 3D Parametric Curves"></a>2.5.7 3D Parametric Curves</h3><p>a spiral aroung the z-axis:<br>$ x=cost $<br>$ y=sint $<br>$ z=t $</p>
+<ul>
+<li>3D Parametric Lines<br>  $ \vec p = \vec o + t\vec d$ <h3 id="2-5-8-3D-Parametric-Surfaces"><a href="#2-5-8-3D-Parametric-Surfaces" class="headerlink" title="2.5.8 3D Parametric Surfaces"></a>2.5.8 3D Parametric Surfaces</h3>$ x = f(u,v) $<br>$ y = g(u,v) $<br>$ z = h(u,v) $</li>
+<li>spherical coordinate system<br>  $ x = r\cos\phi sin\theta $<br>  $ y = r\sin\phi sin\theta $<br>  $ z = r\cos\theta $<h3 id="2-5-9-Summary-of-Curves-and-Surfaces"><a href="#2-5-9-Summary-of-Curves-and-Surfaces" class="headerlink" title="2.5.9 Summary of Curves and Surfaces"></a>2.5.9 Summary of Curves and Surfaces</h3></li>
+<li><strong>implicit curves in 2D / surfaces in 3D</strong><br>  scalar valued functions: $f: \mathbb{R}^2 \to \mathbb{R}$ or $f: \mathbb{R}^3 \to \mathbb{R}$<br>  $S = {\mathbf{p} | f(\mathbf{p}) = 0 }$</li>
+<li><strong>Parametric curves in 2D / 3D</strong><br>  vector valued functions of one variable $\mathbf{p}: D \subset \mathbb{R} \to \mathbb{R^2}$ or $\mathbf{p}: D \subset \mathbb{R} \to \mathbb{R^3}$<br>  $S = { \mathbf{p}(t) | t \in D }$</li>
+<li><strong>Parametric surfaces in 3D</strong><br>  vecotr valued functions of two variables<br>  $\mathbf{p}: \subset \mathbb{R^2} \to \mathbb{R^3}$<br>  $S = { \mathbf{p}(t) | (u,v) \in D }$</li>
+</ul>
+<hr>
+<h2 id="2-6-Linear-Interpolation"><a href="#2-6-Linear-Interpolation" class="headerlink" title="2.6 Linear Interpolation"></a>2.6 Linear Interpolation</h2><p>points are connected by straight line segments<br>$f(x) = y_{i+1} + \frac{x-x<em>i}{x</em>{i+1}-x<em>i}(y</em>{i+1}-y_i)$<br>$(1-t)A+B$</p>
+<hr>
+<h2 id="2-7-Triangles"><a href="#2-7-Triangles" class="headerlink" title="2.7 Triangles"></a>2.7 Triangles</h2><h3 id="2-7-1-2D-Traingles"><a href="#2-7-1-2D-Traingles" class="headerlink" title="2.7.1 2D Traingles"></a>2.7.1 2D Traingles</h3><p>area=$\frac{1}{2} \begin{vmatrix} x_b-x_a &amp; x_c - x_a \ y_b-y_a&amp;y_c-y_a \end{vmatrix}$</p>
+<blockquote>
+<p>This area will have a positive sign if points a,b,c are in counterclockwise order and a negative sign,otherwise</p>
+</blockquote>
+<ul>
+<li><p><strong>barycentric coordinate</strong><br>$\mathbf{p} = \mathbf{a} + \beta(\mathbf{b}-\mathbf{a}) + \gamma(\mathbf{c} - \mathbf{a}) $<br>$\mathbf{p} = (1-\beta-\gamma)\mathbf{a} + \beta \mathbf{b} + \gamma \mathbf{c} $<br>$\mathbf{p} = \alpha \mathbf{a} + \beta \mathbf{b} + \gamma \mathbf{c}$ $\alpha+\beta+\gamma=1$</p>
+<blockquote>
+<p>A particular nice feature of barycentric coordinates is that a point p is insde the triangle formed by a,b,c if and only if<br>$0 &lt; \alpha &lt; 1$<br>$0 &lt; \beta &lt; 1$<br>$0 &lt; \gamma &lt; 1$<br>if one of the coordinates is zero and the other two are between zero and one, then you are on an edge, If two of the coordinate are zeor, then the other is one, and you are at a vertex</p>
+</blockquote>
+</li>
+<li><p><strong>how to compute?</strong><br>$\begin{bmatrix} x_b-x_a&amp;x_c-x_a \ y_b-y_a&amp;y_c-y_a\end{bmatrix} \begin{bmatrix}\beta\\gamma\end{bmatrix}=\begin{bmatrix}x_p-x_a \ y_p-y<em>a\end{bmatrix}$<br>$\beta = \frac{f</em>{ac}(x,y)}{f_ac{x_b,y_b}}$<br>$\beta = \frac{(y_a-y_b)x + (x_b-x_a)y + x_ay_b - x_by_a}{(y_a-y_b)x_c + (x_b-x_a)y_c + x_ay_b - x_by_a}$<br>$A=A_a+A_b+A_c$ is the area of the traingle<br>$\alpha=A_a/A$<br>$\beta=A_b/A$<br>$\gamma=A_c/A$</p>
+<blockquote>
+<p>This rule still holds for points outside the triangle if the areas are allowed to be signed. note that these are signed areas and will be computed correctly as long as the same signed area computation is used for both A and subtriangles</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-7-2-3D-Triangles"><a href="#2-7-2-3D-Triangles" class="headerlink" title="2.7.2 3D Triangles"></a>2.7.2 3D Triangles</h2><p>$\mathbf{p} = (1-\beta-\gamma)\mathbf{a} + \beta\mathbf{b} + \gamma\mathbf{c}$<br>$\mathbf{n=(b-a)\times(c-a)}$<br>$area=\mathbf{\frac{1}{2}|(b-a)\times(c-a)|}$<br>$\alpha=\mathbf{ \frac{n \cdot n_a}{|n|^2}}$<br>$\beta=\mathbf{ \frac{n \cdot n_b}{|n|^2}}$<br>$\gamma=\mathbf{ \frac{n \cdot n_c}{|n|^2}}$</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/OpenGL/" rel="next" title="OpenGL">
+                <i class="fa fa-chevron-left"></i> OpenGL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/12/Computer Graphics/CG-Chapter3/" rel="prev" title="CG_Chapter3">
+                CG_Chapter3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="eigeneko" />
+            
+              <p class="site-author-name" itemprop="name">eigeneko</p>
+              <p class="site-description motion-element" itemprop="description">每日精进 一期一会</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Space_Observers" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/eigeneko" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter2-Miscellaneous-Math"><span class="nav-number">1.</span> <span class="nav-text">Chapter2 Miscellaneous Math</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-Curves-and-Surfaces"><span class="nav-number">1.1.</span> <span class="nav-text">2.5 Curves and Surfaces</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-1-2D-Implicit-Curves"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.5.1 2D Implicit Curves</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-The-2D-Gradient"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.5.2 The 2D Gradient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-3-3D-Implicit-Surfaces"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.5.3 3D Implicit Surfaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-4-Surface-Normal-to-an-Implicit-Surface"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.5.4 Surface Normal to an Implicit Surface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-5-Implicit-Planes"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.5.5 Implicit Planes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-6-Parametric-Curves"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.5.6 Parametric Curves</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-7-3D-Parametric-Curves"><span class="nav-number">1.1.7.</span> <span class="nav-text">2.5.7 3D Parametric Curves</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-8-3D-Parametric-Surfaces"><span class="nav-number">1.1.8.</span> <span class="nav-text">2.5.8 3D Parametric Surfaces</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-9-Summary-of-Curves-and-Surfaces"><span class="nav-number">1.1.9.</span> <span class="nav-text">2.5.9 Summary of Curves and Surfaces</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-Linear-Interpolation"><span class="nav-number">1.2.</span> <span class="nav-text">2.6 Linear Interpolation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-Triangles"><span class="nav-number">1.3.</span> <span class="nav-text">2.7 Triangles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-1-2D-Traingles"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.7.1 2D Traingles</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-2-3D-Triangles"><span class="nav-number">1.4.</span> <span class="nav-text">2.7.2 3D Triangles</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">理性存在观测者</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Chapter4: Ray Tracingobject rendering: each object is considered in turnimage-order rendering: each pixel is considered in turn  Ray Tracing is an image-order a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CG_Chapter4">
+<meta property="og:url" content="http://www.eigeneko.moe/2018/03/12/CG-Chapter4/index.html">
+<meta property="og:site_name" content="二律背反">
+<meta property="og:description" content="Chapter4: Ray Tracingobject rendering: each object is considered in turnimage-order rendering: each pixel is considered in turn  Ray Tracing is an image-order algorithm for making renderings of 3D sce">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-12T15:43:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CG_Chapter4">
+<meta name="twitter:description" content="Chapter4: Ray Tracingobject rendering: each object is considered in turnimage-order rendering: each pixel is considered in turn  Ray Tracing is an image-order algorithm for making renderings of 3D sce">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.eigeneko.moe/2018/03/12/CG-Chapter4/"/>
+
+
+
+
+
+  <title>CG_Chapter4 | 二律背反</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">二律背反</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">优秀的作品应包含数理 哲学 艺术要素</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.eigeneko.moe/2018/03/12/CG-Chapter4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eigeneko">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="二律背反">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CG_Chapter4</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-12T09:52:02+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Graphics/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Graphics</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Chapter4-Ray-Tracing"><a href="#Chapter4-Ray-Tracing" class="headerlink" title="Chapter4: Ray Tracing"></a>Chapter4: Ray Tracing</h1><p><em>object rendering</em>: each object is considered in turn<br><em>image-order rendering</em>: each pixel is considered in turn</p>
+<blockquote>
+<p>Ray Tracing is an image-order algorithm for making renderings of 3D scenes</p>
+</blockquote>
+<h2 id="4-1-The-Basic-Ray-Tracing-Algorithm"><a href="#4-1-The-Basic-Ray-Tracing-Algorithm" class="headerlink" title="4.1 The Basic Ray-Tracing Algorithm"></a>4.1 The Basic Ray-Tracing Algorithm</h2><p>a basic ray tracer have 3 parts:</p>
+<ul>
+<li><strong>ray generation</strong><br>  which computes the origin and direction of each pixel’s viwing ray based on the camera geometry</li>
+<li><strong>ray intersection</strong><br>  find the cloeset object intersecting the viewing ray</li>
+<li><strong>shading</strong><br>  computes the pixel color based on the results of ray intersection<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> each pixel do</span><br><span class="line">    computing viewing ray</span><br><span class="line">    ray, surface norm n -&gt; first object hit</span><br><span class="line">    light, hit point, n -&gt; pxiel color</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="4-2-Perspective"><a href="#4-2-Perspective" class="headerlink" title="4.2 Perspective"></a>4.2 Perspective</h2><p><strong>linear perspective</strong> </p>
+<ul>
+<li><strong>parallel projection</strong><br>  <em>orthographic</em> <em>oblique</em></li>
+<li><strong>perspective projection</strong></li>
+</ul>
+<hr>
+<h2 id="4-3-Computing-Viewing-Rays"><a href="#4-3-Computing-Viewing-Rays" class="headerlink" title="4.3 Computing Viewing Rays"></a>4.3 Computing Viewing Rays</h2><p>A ray is really just an origin point and a propogation direction,a 3D parametric line is ideal for this<br>$p(\mathbf{t}) = \mathbf{s} + t\mathbf{(e-s)}$</p>
+<h2 id="4-3-1-Orthographic-Views"><a href="#4-3-1-Orthographic-Views" class="headerlink" title="4.3.1 Orthographic Views"></a>4.3.1 Orthographic Views</h2><p>the pixel at position (i,j) in the raster images has the position<br>$u=l+(r-l)(i+0.5)/n_x$<br>$v=b+(t-b)(j+0.5)/n_y$<br>where $(u,v)$ are the coordinates of the pixel’s position on the image plane</p>
+<h2 id="4-3-2-Perspective-Views"><a href="#4-3-2-Perspective-Views" class="headerlink" title="4.3.2 Perspective Views"></a>4.3.2 Perspective Views</h2><p>all the rays have same origin</p>
+<p>compute $\mathbf{w}$ and $\mathbf{w}$<br>ray.direction $\leftarrow -d\mathbf{w} + u\mathbf{u} + v\mathbf{v}$<br>ray.origin $\leftarrow e$</p>
+<hr>
+<h2 id="4-4-Ray-Object-Intersection"><a href="#4-4-Ray-Object-Intersection" class="headerlink" title="4.4 Ray-Object Intersection"></a>4.4 Ray-Object Intersection</h2><h3 id="4-4-1-Ray-Sphere-Intersection"><a href="#4-4-1-Ray-Sphere-Intersection" class="headerlink" title="4.4.1 Ray-Sphere Intersection"></a>4.4.1 Ray-Sphere Intersection</h3><p>$\mathbf{p} =  \mathbf{e} + t\mathbf{d}$<br>$\mathbf{c} = (x_c, y_c, z_c)$<br>$\mathbf{(p-c)\cdot(p-c)} - R^2 = 0$<br>this is a classic quadratic equation in t<br>$discriminant &lt; 0$ line and sphere do not intersect<br>$discriminant &gt; 0$ line enter and leave the sphere<br>$discriminant = 0$ ray graze the sphere</p>
+<h3 id="Ray-Triangle-Intersection"><a href="#Ray-Triangle-Intersection" class="headerlink" title="Ray-Triangle Intersection"></a>Ray-Triangle Intersection</h3><p>the vertices of the triangle is in 3D space<br>$\mathbf{e} + t\mathbf{d} = \mathbf{a} + \beta \mathbf{(b-a)} + \gamma \mathbf{(c-a)}$<br>$\beta &gt; 0 \quad \gamma &gt; 0 \quad \beta + \gamma &lt; 1$ intersection is inside the triangle, otherwise the ray hit the plane outside of the triangle.<br>if no solution, either the traingle is degenerate or the ray is paralled to the plane containing the traingle</p>
+<h3 id="4-4-3-Ray-Polygon-Intersection"><a href="#4-4-3-Ray-Polygon-Intersection" class="headerlink" title="4.4.3 Ray-Polygon Intersection"></a>4.4.3 Ray-Polygon Intersection</h3><h3 id="4-4-4-Intersecting-a-Group-of-Objects"><a href="#4-4-4-Intersecting-a-Group-of-Objects" class="headerlink" title="4.4.4 Intersecting a Group of Objects"></a>4.4.4 Intersecting a Group of Objects</h3><hr>
+<h2 id="4-5-Shading"><a href="#4-5-Shading" class="headerlink" title="4.5 Shading"></a>4.5 Shading</h2><h3 id="4-5-1-Lambertian-Shading"><a href="#4-5-1-Lambertian-Shading" class="headerlink" title="4.5.1 Lambertian Shading"></a>4.5.1 Lambertian Shading</h3><p>a surface facing directly toward the light receives maximum illumination<br>a surface tangent to tht light direction recevies no illumination<br>$L = k_dImax(0, \mathbf{n\cdot l} )$<br>$L:$ pixel color<br>$k_d$ diffuse coefficient<br>$I:$ intensity of the light source<br>$\mathbf{l}:$ light direction<br>$\mathbf{v}:$ view direction<br><strong>this equation applies separately to the three color channels</strong></p>
+<h3 id="4-5-2-Blinn-Phong-Shading"><a href="#4-5-2-Blinn-Phong-Shading" class="headerlink" title="4.5.2 Blinn-Phong Shading"></a>4.5.2 Blinn-Phong Shading</h3><p>Lambertian Shading is <em>view independent</em><br>the color of a surface does not depend on the direction from which you<br><strong>shininess</strong>, <strong>producing highlights</strong>, <strong>specular reflections</strong> appear to move around the view point changes<br>$\mathbf{h} = \dfrac{\mathbf{v+l}}{\parallel \mathbf{v+l} \parallel} $<br>$L = k_dI\max(0, \mathbf{n \cdot l}) + k_sI\max(0,\mathbf{n\cdot h})^p$<br>$k_s:$ <em>specular coefficient</em><br>$p$: Phong exponent</p>
+<h3 id="4-5-3-Ambient-Shading"><a href="#4-5-3-Ambient-Shading" class="headerlink" title="4.5.3 Ambient Shading"></a>4.5.3 Ambient Shading</h3><p>$L = k_aI_a + k_dI\max(0, \mathbf{n \cdot l}) + k_sI\max(0,\mathbf{n\cdot h})^p$<br>$k_a:$ surface’s ambient coefficient/ ambient color<br>$I_a:$ ambient light intensity</p>
+<h3 id="4-5-4-Multiple-Point-Lights"><a href="#4-5-4-Multiple-Point-Lights" class="headerlink" title="4.5.4 Multiple Point Lights"></a>4.5.4 Multiple Point Lights</h3><p>simple shading model can easily be extended to handle <em>N</em> light sources<br>$L = k_aI<em>a + \sum</em>{i=1}^{N}[k_dI\max(0, \mathbf{n \cdot l}) + k_sI\max(0,\mathbf{n\cdot h})^p]$</p>
+<hr>
+<h2 id="4-6-A-Ray-Tracing"><a href="#4-6-A-Ray-Tracing" class="headerlink" title="4.6 A Ray-Tracing"></a>4.6 A Ray-Tracing</h2><h2 id="4-7-Shadows"><a href="#4-7-Shadows" class="headerlink" title="4.7 Shadows"></a>4.7 Shadows</h2><h2 id="4-8-Ideal-Specular-Reflection"><a href="#4-8-Ideal-Specular-Reflection" class="headerlink" title="4.8 Ideal Specular Reflection"></a>4.8 Ideal Specular Reflection</h2><p><em>mirror reflection</em><br>some energy is lost when the light reflects from the surface, and this loss can be different for different colors<br>$color c = c + k_mraycolor(\mathbf{p}+sr, \epsilon, \infty)$<br>$k_m:$ specular RGB color</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/CG-Chapter3/" rel="next" title="CG_Chapter3">
+                <i class="fa fa-chevron-left"></i> CG_Chapter3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/12/thought/" rel="prev" title="thought">
+                thought <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="eigeneko" />
+            
+              <p class="site-author-name" itemprop="name">eigeneko</p>
+              <p class="site-description motion-element" itemprop="description">每日精进 一期一会</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Space_Observers" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/eigeneko" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter4-Ray-Tracing"><span class="nav-number">1.</span> <span class="nav-text">Chapter4: Ray Tracing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-The-Basic-Ray-Tracing-Algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">4.1 The Basic Ray-Tracing Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Perspective"><span class="nav-number">1.2.</span> <span class="nav-text">4.2 Perspective</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Computing-Viewing-Rays"><span class="nav-number">1.3.</span> <span class="nav-text">4.3 Computing Viewing Rays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-1-Orthographic-Views"><span class="nav-number">1.4.</span> <span class="nav-text">4.3.1 Orthographic Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-2-Perspective-Views"><span class="nav-number">1.5.</span> <span class="nav-text">4.3.2 Perspective Views</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Ray-Object-Intersection"><span class="nav-number">1.6.</span> <span class="nav-text">4.4 Ray-Object Intersection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-Ray-Sphere-Intersection"><span class="nav-number">1.6.1.</span> <span class="nav-text">4.4.1 Ray-Sphere Intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ray-Triangle-Intersection"><span class="nav-number">1.6.2.</span> <span class="nav-text">Ray-Triangle Intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-Ray-Polygon-Intersection"><span class="nav-number">1.6.3.</span> <span class="nav-text">4.4.3 Ray-Polygon Intersection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-4-Intersecting-a-Group-of-Objects"><span class="nav-number">1.6.4.</span> <span class="nav-text">4.4.4 Intersecting a Group of Objects</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-Shading"><span class="nav-number">1.7.</span> <span class="nav-text">4.5 Shading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-1-Lambertian-Shading"><span class="nav-number">1.7.1.</span> <span class="nav-text">4.5.1 Lambertian Shading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-2-Blinn-Phong-Shading"><span class="nav-number">1.7.2.</span> <span class="nav-text">4.5.2 Blinn-Phong Shading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-3-Ambient-Shading"><span class="nav-number">1.7.3.</span> <span class="nav-text">4.5.3 Ambient Shading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-4-Multiple-Point-Lights"><span class="nav-number">1.7.4.</span> <span class="nav-text">4.5.4 Multiple Point Lights</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-A-Ray-Tracing"><span class="nav-number">1.8.</span> <span class="nav-text">4.6 A Ray-Tracing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-Shadows"><span class="nav-number">1.9.</span> <span class="nav-text">4.7 Shadows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-Ideal-Specular-Reflection"><span class="nav-number">1.10.</span> <span class="nav-text">4.8 Ideal Specular Reflection</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">理性存在观测者</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
